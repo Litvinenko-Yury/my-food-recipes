@@ -1,0 +1,255 @@
+/* markdown-styles.css */
+
+/* 1. Общие стили страницы в темной теме */
+body {
+    font-family: monospace !important;
+    background-color: #2b2d31 !important;
+    /* Уютный темный фон */
+    color: rgb(232, 234, 242) !important;
+    /* Цвет для обычного текста */
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    line-height: 24px !important;
+    text-wrap-mode: wrap !important;
+    white-space-collapse: preserve-spaces !important;
+    -webkit-font-smoothing: antialiased;
+
+    /* ГАРАНТИРОВАННЫЕ ОТСТУПЫ ПО ПЕРИМЕТРУ: 40px сверху/снизу, 20px слева/справа */
+    margin: 0 !important;
+    padding: 20px 10px !important;
+    box-sizing: border-box !important;
+}
+
+details {
+    margin-bottom: 15px;
+    background-color: #2b2d31;
+    border: 2px solid #404245;
+    border-radius: 5px;
+}
+
+summary {
+    /* margin-bottom: 10px; */
+    padding: 5px 10px;
+    background-color: #404245;
+}
+
+.title {
+    font-size: 22px;
+}
+
+/* 2. Адаптивный контейнер с правильными паддингами */
+.markdown-wrapper {
+    width: 100% !important;
+    box-sizing: border-box !important;
+
+    /* ОТСТУПЫ ПО ПЕРИМЕТРУ ДЛЯ МОБИЛЬНЫХ: 40px сверху/снизу и 20px по бокам */
+    padding: 40px 20px !important;
+
+    margin: 0 auto !important;
+    overflow-x: hidden !important;
+}
+
+@media (min-width: 1024px) {
+    .markdown-wrapper {
+        width: 60% !important;
+
+        /* ОТСТУПЫ ПО ПЕРИМЕТРУ ДЛЯ ПК: 60px сверху/снизу, а боковые убираем, так как контейнер сжат до 60% */
+        padding: 60px 0 !important;
+
+        margin: 0 auto !important;
+    }
+}
+
+
+/* 3. Управление общим потоком блоков */
+.markdown-body {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0 !important;
+    padding-top: 20px;
+}
+
+/* 4. Сброс отступов у элементов */
+.markdown-body p,
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3 {
+    font-family: monospace !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    line-height: 22px !important;
+    text-wrap-mode: wrap !important;
+    white-space-collapse: preserve-spaces !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    height: auto !important;
+    min-height: auto !important;
+}
+
+/* Сброс только для маркированных списков (ингредиенты) */
+.markdown-body ul,
+.markdown-body ul li {
+    font-family: monospace !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    line-height: 22px !important;
+    text-wrap-mode: wrap !important;
+    white-space-collapse: preserve-spaces !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    height: auto !important;
+    min-height: auto !important;
+    list-style: none !important;
+}
+
+/* ПО УМОЛЧАНИЮ: Отключаем цифры для всех упорядоченных списков (чтобы не ломать блоки с таймерами) */
+.markdown-body ol,
+.markdown-body details ol {
+    font-family: monospace !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    line-height: 22px !important;
+    text-wrap-mode: wrap !important;
+    white-space-collapse: preserve-spaces !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    height: auto !important;
+    min-height: auto !important;
+    list-style-type: none !important;
+}
+
+.markdown-body ol li,
+.markdown-body details ol li {
+    font-family: monospace !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    line-height: 22px !important;
+    text-wrap-mode: wrap !important;
+    white-space-collapse: preserve-spaces !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    height: auto !important;
+    min-height: auto !important;
+    display: block !important;
+}
+
+/* ТОЧЕЧНАЯ ИЗОЛЯЦИЯ: Включаем нумерацию только для первого списка ol (блок "Подготовка") */
+.markdown-body ol:first-of-type,
+.markdown-body details ol:first-of-type {
+    list-style-type: decimal !important;
+    padding: 5px 5px 5px 35px !important; /* Даем отступ слева, чтобы цифры не резались рамкой details */
+    margin: 10px 0 !important;
+    display: block !important;
+}
+
+.markdown-body ol:first-of-type li,
+.markdown-body details ol:first-of-type li {
+    display: list-item !important;
+    list-style-type: decimal !important;
+    margin-bottom: 4px !important;
+    padding: 0 !important; /* Убираем паддинг у элементов, чтобы маркеры стояли ровно */
+}
+
+/* Применяем ваши 5px отступа ко всем деталям, кроме нумерованных списков li */
+.markdown-body details p,
+.markdown-body details ul,
+.markdown-body details ul li {
+   padding: 5px !important;
+}
+
+/* Ваш рабочий хак для плотности списков */
+/* .markdown-body li { */
+    /* margin-bottom: 2px !important; */
+/* } */
+
+.markdown-body li p {
+    display: inline !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* 5. Фиолетовые заголовки */
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3 {
+    color: rgb(197, 138, 249) !important;
+    border-bottom: none !important;
+    margin-top: 14px !important;
+    margin-bottom: 4px !important;
+}
+
+.markdown-body h2 {
+    margin-top: 24px !important;
+    margin-bottom: 14px !important;
+    font-size: 18px !important;
+}
+
+.markdown-body h1:first-child,
+.markdown-body h2:first-child {
+    margin-top: 0 !important;
+}
+
+/* 6. Обычный жирный текст */
+.markdown-body strong {
+    font-family: monospace !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    line-height: 22px !important;
+    color: rgb(232, 234, 242) !important;
+}
+
+/* 7. Зеленые таймеры и акценты */
+.markdown-body code,
+.markdown-body mark {
+    font-family: monospace !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    line-height: 22px !important;
+    background-color: transparent !important;
+    padding: 0 !important;
+    color: rgb(129, 201, 149) !important;
+}
+
+/* Разделительные линии (---) */
+.markdown-body hr {
+    height: 1px !important;
+    background-color: #3f4147 !important;
+    border: 0 !important;
+    margin: 14px 0 !important;
+}
+
+/* --- ИНТЕРАКТИВНЫЕ ЧЕКБОКСЫ ДЛЯ ИНГРЕДИЕНТОВ --- */
+
+/* Настраиваем внешний вид строки-чекбокса */
+.markdown-body li.todo-item {
+    list-style: none !important; /* Отключаем дефолтные маркеры у ингредиентов */
+    cursor: pointer !important;
+    user-select: none !important;
+    position: relative !important;
+    padding: 0 0 0 20px !important; /* Защита от глобального перетирания паддингов */
+    transition: color 0.2s ease, opacity 0.2s ease;
+    display: block !important; /* Ингредиенты остаются обычными блоками с квадратиками */
+}
+
+/* Рисуем пустой квадратик [] перед каждым ингредиентом */
+.markdown-body li.todo-item::before {
+    content: "☐ " !important; /* Символ пустого квадратика */
+    position: absolute !important;
+    left: 0 !important;
+    color: rgb(197, 138, 249) !important; /* Делаем его фиолетовым в цвет заголовков */
+    font-weight: bold !important;
+}
+
+/* Стили для ИСПОЛЬЗОВАННОГО (кликнутого) ингредиента */
+.markdown-body li.todo-item.checked {
+    color: #57f287 !important; /* Меняем цвет текста на зеленый, когда ингредиент добавлен */
+    opacity: 0.6 !important;     /* Слегка приглушаем яркость */
+    text-decoration: line-through !important; /* Красиво зачеркиваем строку */
+}
+
+/* Меняем квадратик на галочку [x] при клике */
+.markdown-body li.todo-item.checked::before {
+    content: "☑ " !important; /* Символ квадратика с галочкой */
+    color: rgb(129, 201, 149) !important; /* Квадратик тоже становится зеленым */
+}
+

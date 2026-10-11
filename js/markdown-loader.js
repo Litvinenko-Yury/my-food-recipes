@@ -1,6 +1,9 @@
 // js/markdown-loader.js
 
 const recipeCategories = {
+    "☀️ На каждый день": [
+        '0-always-at-home.md'
+    ],
     "🥣 Супы": [
         '1-soup-finnish-salmon.md',
         '1-soup-homemade-solyanka.md',
@@ -21,11 +24,11 @@ const recipeCategories = {
 async function loadAllRecipes() {
     const container = document.getElementById('content');
     if (!container) return;
-    
-    container.innerHTML = ''; 
+
+    container.innerHTML = '';
 
     for (const [categoryName, files] of Object.entries(recipeCategories)) {
-        
+
         const categoryHeader = document.createElement('h2');
         categoryHeader.className = 'category-title';
         categoryHeader.innerText = categoryName;
@@ -35,7 +38,7 @@ async function loadAllRecipes() {
             try {
                 const response = await fetch('foodRecipes/' + fileName);
                 if (!response.ok) throw new Error(`Не удалось загрузить: ${fileName}`);
-                
+
                 const markdownText = await response.text();
                 const htmlContent = marked.parse(markdownText);
 
@@ -52,29 +55,31 @@ async function loadAllRecipes() {
                 // --- УМНАЯ МАГИЯ ЧЕКБОКСОВ ---
                 // 1. Находим все заголовки (обычно h2 или h3) внутри плашки рецепта
                 const headers = detailsElement.querySelectorAll('h1, h2, h3, h4');
-                
+
                 headers.forEach(header => {
                     // Проверяем, содержит ли текст заголовка слово "Ингредиенты" (в любом регистре)
                     if (header.textContent.toLowerCase().includes('ингредиенты')) {
-                        
+
                         // 2. Находим следующий за ним элемент (это должен быть список <ul>)
                         let nextElement = header.nextElementSibling;
-                        
+
                         // Если между заголовком и списком затесался другой тег (например, <p>), ищем дальше
                         while (nextElement && nextElement.tagName !== 'UL' && nextElement.tagName !== 'OL') {
                             nextElement = nextElement.nextElementSibling;
                         }
-                        
+
                         // 3. Если список найден, вешаем чекбоксы только на его элементы
                         if (nextElement) {
                             const ingredientsListItems = nextElement.querySelectorAll('li');
                             ingredientsListItems.forEach(item => {
                                 item.classList.add('todo-item');
-                                item.addEventListener('click', function() {
+                                item.addEventListener('click', function () {
                                     this.classList.toggle('checked');
                                 });
                             });
                         }
+
+                        
                     }
                 });
 

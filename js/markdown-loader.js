@@ -17,7 +17,8 @@ const recipeCategories = {
     "🥞 Завтраки и Десерты": [
         'breakfast-one-pan-toast.md',
         'breakfast-overnight-jar.md',
-        'breakfast-raejuusto-pancakes.md'
+        'breakfast-raejuusto-pancakes.md',
+        '3-dessert-apple-sharlotka.md'
     ]
 };
 
